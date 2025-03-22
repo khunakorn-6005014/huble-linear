@@ -1,5 +1,5 @@
 Report: Analysis of Hubble’s Law and Estimation of the Universe’s Age
-1. Data Description
+## 1. Data Description
 The dataset includes observational measurements of galaxies' distances (dd) and velocities (vv), capturing the relationship described by Hubble's Law (v=H⋅d):
 •	Distance (d): Measured in megaparsecs (Mpc), indicating galaxies' distances from Earth.
 •	Velocity (v): Measured in kilometers per second (km/s), representing how fast galaxies are moving away due to redshift.
@@ -7,13 +7,13 @@ Summary:
 •	Data points: 19 galaxy observations.
 •	The dataset captures the relationship described by Hubble's Law (v=H⋅dv = H \cdot d), with HH being the Hubble constant.
 
-3. Objectives of the Analysis
+## 2. Objectives of the Analysis
 •	Primary Goal: Estimate the Hubble constant (H) using a linear regression model applied to the observed dd-vv relationship.
 •	Secondary Goal: Use the estimated H to calculate the age of the universe assuming uniform expansion.
 •	Deliverable: Statistical evaluation and confidence intervals to support insights into the universe's expansion.
 •	Provide insights into the universe's expansion through statistical evaluation and confidence intervals.
 
-5. Model Selection
+## 3. Model Selection
 Several modeling approaches were considered:
 1.	Linear Regression:
 o	Using the least-squares method to fit v against d, ensuring the line passes through the origin (0,0).
@@ -23,7 +23,7 @@ o	Bootstrap resampling was applied to assess the uncertainty in model parameters
 Model Performance:
 •	Based on R^2 (Coefficient of Determination), the linear regression model explained approximately 88% of the variation in velocity as a function of distance.
 
-4. Key Findings
+## 4. Key Findings
 1.	Hubble Constant (H):
 o	Estimated H=60.35H = 60.35 km/s/Mpc (95% confidence interval provided).
 o	Represents the rate of universe expansion.
@@ -38,7 +38,7 @@ o	Degree of Freedom (DOF): 17.
 o	Model Coefficients: Slope (HH): 60.35, Intercept: 494.41.
 o	R2=0.88R^2 = 0.88.
 
-5. Model Limitations and Recommendations
+## 5. Model Limitations and Recommendations
 •	Flaws:
 o	The intercept deviates from zero, which may indicate noise or systematic errors in measurements.
 o	Assumption of uniform expansion ignores potential time-dependent changes in Hubble constant.
@@ -53,13 +53,14 @@ o	Explore advanced regression models, such as weighted least squares, to account
 o	Investigate non-linear expansions of Hubble's Law to capture variations in the universe's expansion rate.
 •	Interdisciplinary Collaboration: Engage with astrophysics experts to incorporate cosmological models that accommodate time-variable HH.
 
-6. Appendix (Optional)
+## 6. Appendix (Optional)
 •	Python code for:
 o	Plotting the d-v relationship.
 o	Implementing linear regression with confidence intervals.
 o	Calculating metrics like RSS, MSE, and R^2.
-7.My pythoncode
-Plot the Relationship Between d and v
+
+## 7.My pythoncode
+## Plot the Relationship Between d and v
 import matplotlib.pyplot as plt
 # Data from the provided table
 distance = [15, 97, 32, 145, 50, 122, 58, 91, 120, 93, 158, 64, 145, 61, 103, 46, 34, 185, 20]
@@ -73,11 +74,8 @@ plt.title('Relationship Between Distance and Velocity (Hubble\'s Law)', fontsize
 plt.legend()
 plt.grid()
 plt.show()
-Output:
  
-Analysis: The image displayed provides a graphical representation of Hubble's Law. It demonstrates the relationship between the distance of galaxies and their velocity, where the data points clearly show a positive correlation: the farther a galaxy is, the faster it moves away. This insight is critical for astronomers, as it supports the understanding of the expanding universe and provides a foundation for estimating the Hubble constant and, subsequently, the age of the universe.’
-Classifies galaxies as either "fast-moving" or "slow-moving" based on their velocity.
-import pandas as pd
+![image](https://github.com/user-attachments/assets/80c6d070-cb32-4676-9857-882edea65bca)
 
 # Data: Galaxy velocity
 data = {
@@ -120,7 +118,7 @@ Output:
 Explanation
 1.	Threshold: The threshold (5000 km/s) separates galaxies into "fast-moving" (v>5000v > 5000) and "slow-moving" (v≤5000v \leq 5000).
 
-Plot the Predicted Line with 95% Confidence Interval
+## Plot the Predicted Line with 95% Confidence Interval
 import numpy as np
 from sklearn.linear_model import LinearRegression
 from sklearn.utils import resample
@@ -168,11 +166,8 @@ plt.grid()
 plt.show()
 Output:
 
+![image](https://github.com/user-attachments/assets/f4eaaea2-accd-4f3c-a1f7-b52949431f52)
 
-
-
- 
-Analysis: The graph visually represents Hubble's Law, plotting the relationship between the distance of galaxies ($d$) and their velocity ($v$), with observational data and a fitted linear regression line. The red line through the data passes through the origin (0,0), reflecting the proportional relationship dictated by the equation v=Hdv = Hd. This is essential for deriving the Hubble constant and analyzing the expansion of the universe.
 
 from sklearn.metrics import mean_squared_error, r2_score
 
@@ -201,27 +196,11 @@ print(f"Degree of Freedom (DOF): {DOF}")
 print(f"Model Coefficients: Slope = {slope}, Intercept = {intercept}")
 print(f"Mean Squared Error (MSE): {MSE}")
 print(f"Coefficient of Determination (R^2): {R2}")
-Output:
+# Output:
 Residual Sum of Squares (RSS): 22006329.225289907
 Degree of Freedom (DOF): 17
 Model Coefficients: Slope = 60.345485509960376, Intercept = 494.4078552197343
 Mean Squared Error (MSE): 1158227.8539626268
 Coefficient of Determination (R^2): 0.8808794563966119
-Analysis:
-  Residual Sum of Squares (RSS):
-•	Value: 22,006,329.23
-•	This indicates the total variation in the observed data that remains unexplained by the model. A lower RSS suggests a better fit, and this value shows that the model does reasonably well.
-  Degree of Freedom (DOF):
-•	Value: 17
-•	This is calculated as the number of data points minus the number of parameters in the model (slope and intercept). It helps assess the variability of the data.
- Model Coefficients:
-•	Slope (Hubble Constant): 60.35 km/s/Mpc
-•	Intercept: 494.41 km/s
-•	The slope represents the Hubble constant HH, which indicates the rate of expansion of the universe. The intercept is the velocity at zero distance, which ideally should be close to zero but is slightly offset here, likely due to noise or measurement errors.
-Mean Squared Error (MSE):
-•	Value: 1,158,227.85
-•	This represents the average squared difference between predicted and actual values. Lower MSE indicates better predictive performance.
-  Coefficient of Determination (R2R^2):
-•	Value: 0.88
-•	This means that approximately 88% of the variation in the velocity (vv) is explained by the distance (dd) in this model, which reflects a strong linear relationship
+
 
